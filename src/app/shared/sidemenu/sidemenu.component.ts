@@ -11,16 +11,22 @@ import { routes } from '../../app.routes';
 })
 export class SidemenuComponent {
 
-
+public menuItems = routes
+.map(route => route.children ?? [])
+.flat()
+//muestra solo las rutas que no tienen el path vacio
+.filter(route => route && route.path)
+//Excluir la ruita user/:id;
+.filter(route => !route.path?.includes(':'))
   constructor() {
-    const dashboardRoutes = routes
-      .map(route => route.children ?? [])
-      .flat()
-      //muestra solo las rutas que no tienen el path vacio
-      .filter(route => route && route.path)
-      //Excluir la ruita user/:id;
-      .filter(route => !route.path?.includes(':'))
+    // const dashboardRoutes = routes
+    //   .map(route => route.children ?? [])
+    //   .flat()
+    //   //muestra solo las rutas que no tienen el path vacio
+    //   .filter(route => route && route.path)
+    //   //Excluir la ruita user/:id;
+    //   .filter(route => !route.path?.includes(':'))
 
-    console.log(dashboardRoutes)
+    // console.log(dashboardRoutes)
   }
 }
